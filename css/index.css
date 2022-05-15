@@ -6,8 +6,16 @@
   font-family: 'Poppins', sans-serif;
 } 
 
-body {
-	background-image: url("/assets/img/backgroundMainPage5.jpg");
+#bgimg {
+	background: url("/assets/img/backgroundMainPage5.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: -999;
 }
 
 
@@ -56,6 +64,9 @@ nav .menu-btn i{
   cursor: pointer;
   display: none;
 }
+input[type="checkbox"]{
+  display: none;
+}
 
 .logo {
   font-family: 'Dancing Script', cursive;
@@ -72,9 +83,6 @@ nav .menu-btn i{
   100% { background-position: 0 50%; }
 }
 
-input[type="checkbox"]{
-  display: none;
-}
 @media (max-width: 1000px){
   nav{
     padding: 0 40px 0 50px;
@@ -120,20 +128,59 @@ input[type="checkbox"]{
     background: none;
     color: cyan;
   }
+  .logo {
+    justify-content: center;
+  }
 }
-.content {
+.content{
   position: absolute;
-  top: 30%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   z-index: -1;
   width: 100%;
   padding: 0 30px;
-  color: #fff;
+  color: #1b1b1b;
+ 
 }
 .content div{
   font-size: 40px;
   font-weight: 700;
+}
+
+
+
+.main {
+    width: 30%;
+    margin: 50px auto;
+    
+}
+
+
+
+.form-control {
+  text-align: center;
+  
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+    
+}
+
+
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+    
 }
 

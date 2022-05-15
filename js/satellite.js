@@ -1,81 +1,5 @@
-am5.ready(function() {
-
-	// Create root and chart
-	var root = am5.Root.new('chartdiv');
-	var chart = root.container.children.push(
-		am5map.MapChart.new(root, {
-			panX: 'rotateX',
-			panY: 'rotateY',
-			wheelX: 'zoomX',
-			maxZoomLevel: 1,
-			homeZoomLevel: 3.5,
-
-			homeGeoPoint: { longitude: 10, latitude: 52 },
-			projection: am5map.geoOrthographic()
-		})
-	);
-
-	// Set themes
-	root.setThemes([ am5themes_Animated.new(root) ]);
-
-	// Create polygon series
-	var polygonSeries = chart.series.push(
-		am5map.MapPolygonSeries.new(root, {
-			geoJSON: am5geodata_worldLow
-		})
-	);
-
-	var graticuleSeries = chart.series.insertIndex(0, am5map.GraticuleSeries.new(root, {}));
-
-	graticuleSeries.mapLines.template.setAll({
-		stroke: am5.color(0x000000),
-		strokeOpacity: 0.1
-	});
-
-	var backgroundSeries = chart.series.unshift(am5map.MapPolygonSeries.new(root, {}));
-
-	backgroundSeries.mapPolygons.template.setAll({
-		fill: am5.color(0xedf7fa),
-		stroke: am5.color(0xedf7fa)
-	});
-
-	backgroundSeries.data.push({
-		geometry: am5map.getGeoRectangle(90, 180, -90, -180)
-	});
-
-	var cities = {
-		type: 'FeatureCollection',
-		features: [
-			{
-				type: 'Feature',
-				properties: {
-					name: 'New York City'
-				},
-				geometry: {
-					type: 'Point',
-					coordinates: [ longitude, latitude ]
-				}
-			}
-		]
-	};
-
-	var pointSeries = chart.series.push(
-		am5map.MapPointSeries.new(root, {
-			geoJSON: cities
-		})
-	);
-
-	pointSeries.bullets.push(function() {
-		return am5.Bullet.new(root, {
-			sprite: am5.Circle.new(root, {
-				radius: 5,
-				fill: am5.color(0xffba00)
-			})
-		});
-	});
-}); // end am5.ready()
-
 function run() {
+	document.getElementById('bgimg').style.filter = 'brightness(100%)';
 	var name = getSatelliteName();
 	var validated = validation(name);
 
@@ -98,11 +22,18 @@ function run() {
 			var LongDegree = convertRadiansToDegrees(position.longitude);
 
 			var tmp = LatDegree + ' ' + LongDegree;
+
+			generateMap(LatDegree, LongDegree, name);
+
 			console.log(tmp);
+			informationBox(name, LatDegree, LongDegree, position.height);
 		});
 	} else {
 		console.log('break');
 	}
+
+	
+
 }
 
 function convertRadiansToDegrees(radians) {
@@ -131,4 +62,96 @@ function validation(satName) {
 		console.log('Satellite name input successful, returning name: ' + satName);
 		return true;
 	}
+}
+
+function generateMap(latitude, longitude, name) {
+	console.log(latitude, longitude, name);
+	// Create root and chart
+	var root = am5.Root.new('chartdiv');
+	var chart = root.container.children.push(
+		am5map.MapChart.new(root, {
+			panX: 'rotateX',
+			panY: 'rotateY',
+			wheelX: 'zoomX',
+			maxZoomLevel: 1,
+			projection: am5map.geoOrthographic()
+		})
+	);
+
+	// Set themes
+	root.setThemes([ am5themes_Animated.new(root) ]);
+
+	// Create polygon series
+	var polygonSeries = chart.series.push(
+		am5map.MapPolygonSeries.new(root, {
+			geoJSON: am5geodata_worldLow
+		})
+	);
+
+	var graticuleSeries = chart.series.insertIndex(0, am5map.GraticuleSeries.new(root, {}));
+
+	graticuleSeries.mapLines.template.setAll({
+		stroke: am5.color(0x000000),
+		strokeOpacity: 0.1
+	});
+
+	var backgroundSeries = chart.series.unshift(am5map.MapPolygonSeries.new(root, {}));
+
+	backgroundSeries.mapPolygons.template.setAll({
+		fill: am5.color('#000000'),
+		stroke: am5.color('#000000')
+	});
+
+	backgroundSeries.data.push({
+		geometry: am5map.getGeoRectangle(90, 180, -90, -180)
+	});
+
+	var location = {
+		type: 'FeatureCollection',
+		features: [
+			{
+				type: 'Feature',
+				properties: {
+					name: name
+				},
+				geometry: {
+					type: 'Point',
+					coordinates: [ longitude, latitude ]
+				}
+			}
+		]
+	};
+
+	var pointSeries = chart.series.push(
+		am5map.MapPointSeries.new(root, {
+			geoJSON: location
+		})
+	);
+
+	pointSeries.bullets.push(function() {
+		return am5.Bullet.new(root, {
+			sprite: am5.Circle.new(root, {
+				radius: 5,
+				fill: am5.color(0xb30000)
+			})
+		});
+	});
+	chart.appear(1000, 100);
+} // end am5.ready()
+
+function informationBox(name, lat, long, elevation) {
+	var newElement = document.createElement('h4');
+	newElement.innerHTML = `<u>Name: ${name}</u> `;
+	var newElement2 = document.createElement('h4');
+	newElement2.innerHTML = `<u>Latitude: ${lat.toFixed(2)}</u>`;
+	var newElement3 = document.createElement('h4');
+	newElement3.innerHTML = `<u>Longitude: ${long.toFixed(2)}</u>`;
+	var newElement4 = document.createElement('h4');
+	newElement4.innerHTML = `<u>Elevation: ${elevation.toFixed(2)}`;
+
+	document.getElementById('leftInfoBox').appendChild(newElement)
+	document.getElementById('leftInfoBox').appendChild(newElement2)
+	document.getElementById('leftInfoBox').appendChild(newElement3)
+	document.getElementById('leftInfoBox').appendChild(newElement4)
+	document.getElementById('leftInfoBox').style = 'display: inline;';
 }

@@ -14,56 +14,49 @@
 </head>
 
 <body>
-    <nav>
-        <div class="logo">Nathan's Tracker</div>
-        <input type="checkbox" id="click">
-        <label for="click" class="menu-btn">
-            <i class="fas fa-bars"></i>
-        </label>
-        <ul>
-            <li><a href="/views/index.html">Home</a></li>
-            <li><a class="active" href="/views/index.html">Satellites</a></li>
-            <li><a href="#">Planets</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Subscribe</a></li>
-        </ul>
-    </nav>
-    <div class="main">
-        <div class="input-group">
-            <input type="text" id="satelliteName" class="form-control" placeholder="Search for a satellite!">
-            <div class="input-group-append">
-                <button class="btn btn-secondary" type="button" onclick="run();">
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
-        </div>
+    <div id="bgimg">
     </div>
 
+        <nav>
+            <div class="logo">Nathan's Tracker</div>
+            <input type="checkbox" id="click">
+            <label for="click" class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <ul>
+                <li><a href="/views/index.html">Home</a></li>
+                <li><a class="active" href="/views/index.html">Satellites</a></li>
+                <li><a href="#">Planets</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Subscribe</a></li>
+            </ul>
+        </nav>
+        <div class="main">
+            <div class="input-group">
+                <input type="text" id="satelliteName" class="form-control" placeholder="Search for a satellite!">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button" onclick="run();">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-    <!-- Styles -->
-    <style>
-        #chartdiv {
-            width: 100%;
-            height: 500px;
-        }
-    </style>
 
-    <!-- Resources -->
-    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+        <!-- Styles -->
 
-    <!-- Chart code -->
-    <script>
+
+        <!-- Resources -->
+        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
         
-
-
-
-    </script>
-
-    <!-- HTML -->
-    <div id="chartdiv"></div>
+        <div id="leftInfoBox">
+           
+        </div>
+        <div id="chartdiv"></div>
 
 
 
@@ -73,6 +66,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/satellite.js/4.0.0/satellite.min.js"></script>
     <script src="/js/satellite.js"></script>
+
 </body>
 
 </html>
