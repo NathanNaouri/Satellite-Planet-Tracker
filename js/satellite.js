@@ -24,7 +24,7 @@ function run() {
 			var tmp = LatDegree + ' ' + LongDegree;
 
 			generateMap(LatDegree, LongDegree, name);
-
+			
 			console.log(tmp);
 			informationBox(name, LatDegree, LongDegree, position.height);
 		});
@@ -143,11 +143,11 @@ function informationBox(name, lat, long, elevation) {
 	var newElement = document.createElement('h4');
 	newElement.innerHTML = `<u>Name: ${name}</u> `;
 	var newElement2 = document.createElement('h4');
-	newElement2.innerHTML = `<u>Latitude: ${lat.toFixed(2)}</u>`;
+	newElement2.innerHTML = `<u>Latitude: ${lat.toFixed(2)}&#176;</u>`;
 	var newElement3 = document.createElement('h4');
-	newElement3.innerHTML = `<u>Longitude: ${long.toFixed(2)}</u>`;
+	newElement3.innerHTML = `<u>Longitude: ${long.toFixed(2)}&#176;</u>`;
 	var newElement4 = document.createElement('h4');
-	newElement4.innerHTML = `<u>Elevation: ${elevation.toFixed(2)}`;
+	newElement4.innerHTML = `<u>Elevation: ${elevation.toFixed(2)} km`;
 
 	document.getElementById('leftInfoBox').appendChild(newElement)
 	document.getElementById('leftInfoBox').appendChild(newElement2)

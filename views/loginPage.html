@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/loginPage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,11 +31,27 @@
                 <li><a href="#">Subscribe</a></li>
             </ul>
         </nav>
-        <div class="content">
-            <div>Satellite - Planet Tracker Final Project</div>
-            <div>By Nathan Naouri</div>
+        <center>
+        <div class="form-signin">
+            <h1 class="h3login">Please sign in</h1>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="loginInputEmail" class="form-control" placeholder="Email address" required=""
+                autofocus="">
+            <label for="loginInputPassword" class="sr-only">Password</label>
+            <input type="password" id="loginInputPassword" class="form-control" placeholder="Password" required="">
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="import('/js/firebaseLogin.js').then(o=> o.signIn())">Sign in</button>
         </div>
+        <h4 style="color:white;">Don't have an account? No problem, go ahead and <a class="btnSignUp" href="/views/signUpPage.html">Sign Up</a></h4>
+        </center>
     </div>
+
+
+<script type="module" src="/js/firebaseLogin.js"></script>
 </body>
 
 </html>
